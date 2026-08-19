@@ -137,7 +137,3 @@ FORECAST_DAYS: 3
 - Geolocation API
 - Cloudflare Pages Functions
 - GitHub
-
-## 📌 الوصف القصير
-
-> تطبيق طقس متجاوب يعرض البيانات الحالية والتوقعات باستخدام WeatherAPI مع بنية Serverless آمنة.
