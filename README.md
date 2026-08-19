@@ -1,139 +1,61 @@
-# 🌤️ SkyView Weather
+# 🌤️ SkyView Weather App
 
-تطبيق طقس متجاوب واحترافي مبني بـ HTML وCSS وVanilla JavaScript، ويستخدم WeatherAPI لعرض الطقس الحالي والتوقعات بالساعة والأيام القادمة، مع البحث عن المدن وتحديد الموقع الجغرافي وواجهة ديناميكية تتغير حسب حالة الطقس.
+A responsive weather web application built with **HTML, CSS, and Vanilla JavaScript**.
 
-## ✨ أبرز المميزات
+SkyView allows users to search for a location and view current weather information through a clean, responsive, and user-friendly interface.
 
-- 🔎 **بحث ذكي وتحديد الموقع** — البحث عن المدن مع اقتراحات واستخدام Geolocation.
-- 🌡️ **بيانات طقس مفصلة** — الحرارة، الإحساس الحراري، الرطوبة، الرياح، الضغط، الرؤية، UV وجودة الهواء عند توفرها.
-- 📅 **توقعات ساعية ويومية** — عرض التوقعات مع حالات الطقس والأيقونات وبيانات التساقط.
-- 🎨 **واجهة ديناميكية ومتجاوبة** — خلفيات وحركات حسب حالة الطقس، Light/Dark behavior ودعم الجوال والتابلت والديسكتوب.
+🔗 **Live Demo:** https://skyview-weatherapp.pages.dev/
 
-## 🔐 الأمان
+---
 
-الواجهة **لا تحتوي على WeatherAPI key**. المتصفح يرسل الطلب إلى:
+## ✨ Features
 
-```text
-/api/weather
-```
+- 🌍 Search for weather information by location
+- 🌡️ Display current weather conditions
+- 💨 Display relevant weather information and details
+- 📱 Fully responsive design
+- 🎨 Clean and user-friendly interface
+- ⚡ Fast and lightweight front-end
+- 🔒 API requests are handled securely through Cloudflare Pages Functions
+- 🚫 API secrets are not exposed in the client-side code
 
-ثم تقوم **Cloudflare Pages Function** الموجودة في `functions/api/weather.js` باستدعاء WeatherAPI باستخدام السر المخزن في `context.env.WEATHER_API_KEY`.
+---
 
-كما تحتوي الـ Function على:
+## 🛠️ Technologies
 
-- تحقق من المدخلات وتحديد طول الاستعلام.
-- Best-effort rate limiting لكل IP داخل بيئة التنفيذ.
-- Cache قصير المدى لتقليل الطلبات المتكررة.
-- Timeout لطلبات WeatherAPI.
-- عدم إرسال المفتاح أو أي تفاصيل حساسة للمتصفح.
-
-> ملاحظة: الـ rate limiting الموجود داخل الذاكرة يعمل كطبقة حماية خفيفة داخل كل Cloudflare isolate، وليس نظامًا مركزيًا مضمونًا للحماية من هجمات ضخمة. في مشروع أكبر يمكن إضافة Cloudflare Rate Limiting/WAF أو KV/Durable Objects.
-
-لا تضع المفتاح الحقيقي داخل `js/` أو `index.html` أو GitHub.
-
-## 🗂️ هيكل المشروع
-
-```text
-SkyView-Weather/
-├── index.html
-├── _routes.json
-├── .gitignore
-├── .env.example
-├── .dev.vars.example
-├── README.md
-├── functions/
-│   └── api/
-│       └── weather.js      # Cloudflare Pages Function
-├── js/
-│   ├── app.js              # منطق التطبيق والأحداث
-│   ├── ui.js               # تحديث الواجهة والحالات
-│   └── weather.js          # استدعاء /api/weather + cache
-└── css/
-    ├── main.css
-    ├── components.css
-    ├── themes.css
-    └── responsive.css
-```
-
-## 🚀 النشر على GitHub ثم Cloudflare Pages
-
-### 1) GitHub
-
-ارفع المشروع إلى Repository جديد **بدون أي ملف يحتوي على مفتاح حقيقي**.
-
-المشروع Vanilla JS ولا يحتاج React أو Vite أو Build step.
-
-### 2) Cloudflare Pages
-
-اربط Repository الخاص بالمشروع من **Workers & Pages → Create application → Pages → Connect to Git**.
-
-إعدادات البناء:
-
-```text
-Framework preset: None
-Build command: exit 0
-Build output directory: .
-Root directory: /
-```
-
-مجلد `functions/` في جذر المشروع يحتوي على Pages Function، والـ route الناتج هو `/api/weather`.
-
-### 3) إضافة WeatherAPI Secret
-
-من إعدادات مشروع Cloudflare أضف Secret باسم:
-
-```text
-WEATHER_API_KEY
-```
-
-ضع فيه **مفتاح WeatherAPI الجديد** واختر التخزين المشفر.
-
-لا تضع المفتاح في GitHub ولا في ملفات الواجهة.
-
-### 4) Redeploy
-
-بعد إضافة الـ Secret، أعد النشر.
-
-## 🧪 التشغيل المحلي
-
-اختياريًا، استخدم Wrangler/Cloudflare Pages dev لتجربة الـ Function محليًا.
-
-أنشئ ملفًا محليًا اسمه `.dev.vars`:
-
-```env
-WEATHER_API_KEY=your_weatherapi_key_here
-```
-
-ثم شغّل بيئة التطوير من Cloudflare/Wrangler.
-
-**لا ترفع `.dev.vars` إلى GitHub.**
-
-## ⚙️ إعدادات WeatherAPI
-
-عدد أيام التوقعات الافتراضي في `js/weather.js` مضبوط على:
-
-```js
-FORECAST_DAYS: 3
-```
-
-يمكن رفع الرقم إذا كانت خطة WeatherAPI الخاصة بك تدعم عدد أيام أكبر.
-
-المفتاح **لا يجب** أن يوضع في `js/weather.js`.
-
-## 📌 قبل النشر
-
-- غيّر أي API key قديم تم نشره أو مشاركته سابقًا.
-- تأكد أن `WEATHER_API_KEY` مضبوط في Cloudflare.
-- لا تضف `.env` أو `.dev.vars` إلى Git.
-- بعد أول Deploy اختبر `/api/weather` من الموقع نفسه.
-- بعد حصولك على دومين نهائي، يمكنك إضافة canonical/OG URL يدويًا في `index.html`.
-
-## 🌍 التقنيات
-
+### Front-End
 - HTML5
 - CSS3
 - Vanilla JavaScript
-- WeatherAPI
-- Geolocation API
-- Cloudflare Pages Functions
+
+### Tools & Services
+- Git
 - GitHub
+- Cloudflare Pages
+- Cloudflare Pages Functions
+- Weather API
+
+---
+
+## 🧩 How It Works
+
+SkyView uses JavaScript to handle user interactions and request weather data.
+
+Instead of exposing the API key directly in the browser, the weather request is handled through a **Cloudflare Pages Function**.
+
+The general flow is:
+
+```text
+User
+  ↓
+SkyView Front-End
+  ↓
+/api/weather
+  ↓
+Cloudflare Pages Function
+  ↓
+Weather API
+  ↓
+Weather Data
+  ↓
+SkyView UI
