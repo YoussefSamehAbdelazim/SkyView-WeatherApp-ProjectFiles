@@ -1,0 +1,1216 @@
+/*
+  ===================================================
+  ملف CSS الرئيسي - main.css
+  يحتوي على:
+  - متغيرات CSS العامة (Custom Properties)
+  - إعادة تعيين الأنماط الافتراضية (Reset)
+  - أنماط الأساس العامة للصفحة
+  - شريط التنقل العلوي
+  - شريط البحث
+  - البطاقة الرئيسية للطقس
+  - أنماط القسم الرئيسي والتذييل
+  ===================================================
+*/
+
+/* ===================== متغيرات CSS - الوضع الفاتح ===================== */
+:root {
+  /* --- الألوان الرئيسية --- */
+  --primary: #667eea;           /* اللون الأساسي - بنفسجي */
+  --primary-dark: #5a6fd6;      /* الأساسي الداكن */
+  --secondary: #764ba2;         /* اللون الثانوي - بنفسجي غامق */
+  --accent: #f093fb;            /* لون التمييز - وردي */
+  --accent-2: #4facfe;          /* لون تمييز ثانٍ - أزرق فاتح */
+
+  /* --- ألوان الخلفية (الوضع الفاتح) --- */
+  --bg-primary: #f0f4ff;        /* خلفية الصفحة الرئيسية */
+  --bg-secondary: #ffffff;      /* خلفية البطاقات */
+  --bg-tertiary: #e8ecf8;       /* خلفية العناصر المضمنة */
+  --bg-glass: rgba(255,255,255,0.85); /* خلفية زجاجية شفافة */
+  --bg-glass-hover: rgba(255,255,255,0.95); /* خلفية زجاجية عند التحويم */
+
+  /* --- ألوان النصوص --- */
+  --text-primary: #1a1a2e;      /* النص الرئيسي */
+  --text-secondary: #4a4a6a;    /* النص الثانوي */
+  --text-muted: #8888aa;        /* نص باهت */
+  --text-white: #ffffff;        /* نص أبيض */
+
+  /* --- ألوان الحالة --- */
+  --success: #10b981;           /* نجاح - أخضر */
+  --warning: #f59e0b;           /* تحذير - برتقالي */
+  --danger: #ef4444;            /* خطر - أحمر */
+  --info: #3b82f6;              /* معلومة - أزرق */
+
+  /* --- الظلال --- */
+  --shadow-sm: 0 2px 8px rgba(102, 126, 234, 0.1);
+  --shadow-md: 0 8px 32px rgba(102, 126, 234, 0.15);
+  --shadow-lg: 0 20px 60px rgba(102, 126, 234, 0.2);
+  --shadow-glow: 0 0 30px rgba(102, 126, 234, 0.3);
+
+  /* --- زوايا الحواف --- */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* --- الخطوط --- */
+  --font-primary: 'Cairo', 'Tajawal', sans-serif;   /* الخط الرئيسي */
+  --font-heading: 'Tajawal', 'Cairo', sans-serif;   /* خط العناوين */
+  --font-numbers: 'Poppins', sans-serif;             /* خط الأرقام */
+
+  /* --- انتقالات CSS --- */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-spring: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* --- حجم التمرير للشريط العلوي --- */
+  --navbar-height: 70px;
+
+  /* --- التدرج الرئيسي --- */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-accent: linear-gradient(135deg, #f093fb 0%, #4facfe 100%);
+  --gradient-warm: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  --gradient-cool: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  --gradient-night: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
+
+/* ===================== إعادة تعيين الأنماط الافتراضية ===================== */
+*, *::before, *::after {
+  /* إلغاء الهامش والحشو الافتراضي لكل العناصر */
+  margin: 0;
+  padding: 0;
+  /* حساب الحجم يشمل الحشو والحدود */
+  box-sizing: border-box;
+}
+
+/* ===================== إعدادات أساسية للـ HTML والـ Body ===================== */
+html {
+  /* تحسين التمرير الناعم */
+  scroll-behavior: smooth;
+  /* حجم الخط الأساسي */
+  font-size: 16px;
+  /* منع الأوفرفلو الأفقي */
+  overflow-x: hidden;
+}
+
+body {
+  /* الخط الافتراضي */
+  font-family: var(--font-primary);
+  /* لون النص الافتراضي */
+  color: var(--text-primary);
+  /* خلفية الصفحة */
+  background-color: var(--bg-primary);
+  /* منع الأوفرفلو الأفقي */
+  overflow-x: hidden;
+  /* انتقال ناعم عند تغيير الثيم */
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+  /* الخط يأخذ الاتجاه RTL للعربي */
+  direction: rtl;
+  text-align: right;
+  /* ارتفاع السطر */
+  line-height: 1.6;
+}
+
+/* ===================== إعداد الصور ===================== */
+img {
+  /* الصور تملأ العرض الأقصى للحاوية */
+  max-width: 100%;
+  height: auto;
+  /* منع سحب الصور */
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ===================== إعداد الروابط ===================== */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* ===================== إعداد القوائم ===================== */
+ul, ol {
+  list-style: none;
+}
+
+/* ===================== إعداد الأزرار الأساسية ===================== */
+button {
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  transition: all var(--transition-normal);
+}
+
+button:focus-visible {
+  /* إطار واضح للوصولية عند التنقل بالكيبورد */
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ===================== إعداد حقول الإدخال ===================== */
+input {
+  font-family: var(--font-primary);
+  border: none;
+  outline: none;
+}
+
+/* ===================== ضمان عدم ظهور الـ Scrollbar بشكل مزعج ===================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* ===================== إخفاء العناصر ===================== */
+.hidden {
+  display: none !important;
+}
+
+/* ===================== الخلفية الديناميكية للطقس ===================== */
+.weather-bg {
+  /* تغطي الصفحة بالكامل كخلفية */
+  position: fixed;
+  inset: 0; /* top:0, right:0, bottom:0, left:0 */
+  z-index: -2;
+  /* انتقال ناعم عند تغيير الخلفية */
+  transition: all 1.5s ease;
+  background: var(--gradient-primary);
+}
+
+/* طبقة التدرج فوق الخلفية لتحسين قراءة النصوص */
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background var(--transition-slow);
+}
+
+/* الجزيئات المتحركة في الخلفية */
+.bg-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none; /* لا تتفاعل مع نقرات الماوس */
+}
+
+/* ===================== الصفحة الرئيسية ===================== */
+.main-content {
+  /* نسبي لتحديد الموضع */
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ===================== شريط التنقل ===================== */
+.navbar {
+  /* ثابت في أعلى الصفحة */
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  height: var(--navbar-height);
+  /* خلفية زجاجية */
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+/* شريط التنقل عند التمرير للأسفل */
+.navbar.scrolled {
+  background: var(--bg-glass);
+  box-shadow: var(--shadow-md);
+}
+
+/* حاوية محتوى شريط التنقل */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  /* الهامش الجانبي المتجاوب */
+  padding: 0 clamp(16px, 4vw, 40px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* شعار الموقع */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* أيقونة الشعار */
+.nav-logo-icon {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  /* تدرج لوني للأيقونة */
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* تحريك الأيقونة برفق */
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+/* نص الشعار */
+.nav-logo-text {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 900;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+}
+
+/* أيقونة عائمة */
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* أزرار التحكم في الجانب الأيسر */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===================== القسم الرئيسي (Hero) ===================== */
+.hero-section {
+  /* يبدأ تحت شريط التنقل */
+  padding-top: calc(var(--navbar-height) + 30px);
+  padding-bottom: 40px;
+  padding-right: clamp(12px, 3vw, 30px);
+  padding-left: clamp(12px, 3vw, 30px);
+  max-width: 1200px;
+  margin: 0 auto;
+  /* يأخذ ارتفاعًا كافيًا */
+  min-height: 100vh;
+}
+
+/* ===================== حاوية البحث ===================== */
+.search-container {
+  margin-bottom: clamp(20px, 4vw, 40px);
+  /* تحريك ظهور البحث */
+  animation: slideDown 0.6s ease;
+}
+
+/* حاوية شريط البحث الداخلية */
+.search-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* مجموعة حقل البحث */
+.search-input-group {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+/* أيقونة البحث داخل الحقل */
+.search-icon {
+  position: absolute;
+  /* يمين لـ RTL */
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary);
+  font-size: 1.1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* حقل نص البحث */
+.search-input {
+  width: 100%;
+  height: 56px;
+  /* مسافة للأيقونة من اليمين */
+  padding: 0 50px 0 20px;
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-family: var(--font-primary);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+/* حقل البحث عند التركيز */
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg), 0 0 0 4px rgba(102, 126, 234, 0.15);
+  background: var(--bg-glass-hover);
+  transform: translateY(-2px);
+}
+
+/* placeholder لحقل البحث */
+.search-input::placeholder {
+  color: var(--text-muted);
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+}
+
+/* قائمة الاقتراحات */
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  z-index: 100;
+  max-height: 280px;
+  overflow-y: auto;
+  display: none; /* تظهر بـ JavaScript */
+}
+
+/* اقتراح واحد في القائمة */
+.suggestion-item {
+  padding: 12px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: background var(--transition-fast);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.08);
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background: var(--bg-tertiary);
+  color: var(--primary);
+}
+
+.suggestion-item i {
+  color: var(--primary);
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* مجموعة أزرار البحث */
+.search-buttons {
+  display: flex;
+  gap: 8px;
+  /* لا تنكمش البطاقات */
+  flex-shrink: 0;
+}
+
+/* ===================== رسالة الخطأ ===================== */
+.error-message {
+  margin-bottom: 20px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #ff6b6b20, #ee5a5a15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  animation: shake 0.5s ease;
+  overflow: hidden;
+}
+
+/* محتوى رسالة الخطأ */
+.error-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+/* أيقونة الخطأ */
+.error-icon {
+  font-size: 1.8rem;
+  color: var(--danger);
+  flex-shrink: 0;
+}
+
+/* نص الخطأ */
+.error-text {
+  flex: 1;
+}
+.error-text h3 {
+  color: var(--danger);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.error-text p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* زر إغلاق الخطأ */
+.error-close {
+  background: transparent;
+  color: var(--text-muted);
+  padding: 8px;
+  border-radius: var(--radius-full);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+.error-close:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+/* ===================== البطاقة الرئيسية للطقس ===================== */
+.weather-main-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(20px, 4vw, 40px);
+  margin-bottom: clamp(20px, 4vw, 40px);
+  /* تحريك ظهور البطاقة */
+  animation: fadeInUp 0.7s ease;
+  transition: all var(--transition-normal);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ديكور زخرفي في ركن البطاقة */
+.weather-main-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* رأس البطاقة */
+.weather-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: clamp(16px, 3vw, 30px);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* معلومات الموقع */
+.location-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* أيقونة الموقع */
+.location-pin {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  color: var(--danger);
+  /* تحريك نبضة */
+  animation: locationPulse 2s ease-in-out infinite;
+}
+
+/* نص الموقع */
+.location-text {}
+
+/* اسم المدينة */
+.city-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 3.5vw, 2rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+/* اسم الدولة */
+.country-name {
+  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* التاريخ والوقت الحالي */
+.current-datetime {
+  text-align: left;
+  flex-shrink: 0;
+}
+
+/* الوقت الحالي */
+.current-time {
+  font-family: var(--font-numbers);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  /* تأثير توهج خفيف */
+  text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+/* التاريخ الحالي */
+.current-date {
+  font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* جسم البطاقة */
+.weather-card-body {
+  display: grid;
+  /* عمودان متساويان على الشاشات الكبيرة */
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(20px, 4vw, 40px);
+  align-items: start;
+  margin-bottom: clamp(20px, 4vw, 30px);
+}
+
+/* قسم درجة الحرارة */
+.temp-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* أيقونة الطقس الكبيرة */
+.weather-icon-large {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+/* أيقونة الطقس الرئيسية */
+.weather-main-icon {
+  font-size: clamp(3rem, 8vw, 5rem);
+  /* تأثير ظل الأيقونة */
+  filter: drop-shadow(0 8px 16px rgba(102, 126, 234, 0.4));
+  /* تحريك عائم */
+  animation: floatWeather 4s ease-in-out infinite;
+}
+
+/* عرض درجة الحرارة */
+.temperature-display {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+/* قيمة درجة الحرارة */
+.temp-value {
+  font-family: var(--font-numbers);
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-primary);
+  /* تأثير توهج خفيف */
+  text-shadow: 0 2px 20px rgba(102, 126, 234, 0.2);
+}
+
+/* وحدة الحرارة */
+.temp-unit {
+  font-family: var(--font-numbers);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* الشعور الحراري */
+.feels-like {
+  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+  color: var(--text-secondary);
+  background: rgba(102, 126, 234, 0.1);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+.feels-like i {
+  color: var(--warning);
+  margin-left: 4px;
+}
+
+/* قسم تفاصيل الطقس */
+.weather-details-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* وصف حالة الطقس */
+.weather-description {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: capitalize;
+}
+
+/* نطاق درجات الحرارة */
+.temp-range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-numbers);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+}
+
+/* درجة الحرارة العليا */
+.temp-high {
+  color: var(--danger);
+  font-weight: 600;
+}
+.temp-high i { margin-left: 4px; }
+
+/* درجة الحرارة الدنيا */
+.temp-low {
+  color: var(--info);
+  font-weight: 600;
+}
+.temp-low i { margin-left: 4px; }
+
+/* الفاصل */
+.temp-separator {
+  color: var(--text-muted);
+}
+
+/* شبكة مؤشرات الطقس */
+.weather-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+/* ===================== تذييل البطاقة ===================== */
+.weather-card-footer {
+  border-top: 1px solid rgba(102, 126, 234, 0.15);
+  padding-top: clamp(16px, 3vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* معلومات الشروق والغروب */
+.sun-times {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* عنصر وقت الشمس */
+.sun-time {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 100px;
+}
+
+/* أيقونة وقت الشمس */
+.sun-time-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* أيقونة الشروق */
+.sunrise .sun-time-icon {
+  background: linear-gradient(135deg, #f6d365, #fda085);
+  color: white;
+}
+
+/* أيقونة الغروب */
+.sunset .sun-time-icon {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+/* معلومات وقت الشمس */
+.sun-time-info {}
+
+/* تسمية وقت الشمس */
+.sun-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* قيمة وقت الشمس */
+.sun-value {
+  font-family: var(--font-numbers);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* حاوية قوس الشمس */
+.sun-progress-container {
+  flex: 2;
+  min-width: 100px;
+}
+
+/* قوس الشمس */
+.sun-arc {
+  position: relative;
+  height: 40px;
+  background: linear-gradient(90deg, #f6d365, #fda085, #667eea);
+  border-radius: var(--radius-full);
+  opacity: 0.4;
+  overflow: visible;
+}
+
+/* نقطة الشمس على القوس */
+.sun-dot {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: #fda085;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 10px rgba(253, 160, 133, 0.6);
+  transition: left var(--transition-slow);
+}
+
+/* معلومات إضافية */
+.extra-info {
+  display: flex;
+  gap: clamp(12px, 3vw, 24px);
+  flex-wrap: wrap;
+}
+
+/* عنصر معلومة إضافية */
+.extra-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+  color: var(--text-secondary);
+}
+.extra-item i {
+  color: var(--primary);
+}
+.extra-item strong {
+  color: var(--text-primary);
+}
+
+/* ===================== قسم العنوان العام ===================== */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* عنوان القسم */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title i {
+  color: var(--primary);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+/* ===================== قسم التوقعات الساعية ===================== */
+.hourly-section {
+  margin-bottom: clamp(20px, 4vw, 40px);
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+/* حاوية البطاقات الساعية */
+.hourly-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-behavior: smooth;
+  /* إخفاء شريط التمرير مع إبقاء الوظيفة */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+/* أزرار التمرير */
+.scroll-controls {
+  display: flex;
+  gap: 8px;
+}
+
+/* زر تمرير */
+.scroll-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+}
+.scroll-btn:hover {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ===================== قسم التوقعات اليومية ===================== */
+.forecast-section {
+  margin-bottom: clamp(20px, 4vw, 40px);
+  animation: fadeInUp 0.9s ease 0.3s both;
+}
+
+/* شبكة التوقعات */
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+/* ===================== قسم المعلومات الإضافية ===================== */
+.info-section {
+  margin-bottom: clamp(20px, 4vw, 40px);
+  animation: fadeInUp 1s ease 0.4s both;
+}
+
+/* شبكة بطاقات المعلومات */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* بطاقة معلومة */
+.info-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* رأس بطاقة المعلومات */
+.info-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background: rgba(102, 126, 234, 0.08);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+.info-card-header i {
+  color: var(--primary);
+  font-size: 1rem;
+}
+.info-card-header h3 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* جسم بطاقة المعلومات */
+.info-card-body {
+  padding: 20px;
+}
+
+/* ===================== نصيحة الطقس ===================== */
+.tip-icon {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 10px;
+  /* تحريك عائم */
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.tip-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ===================== جودة الهواء ===================== */
+.air-quality-meter {
+  text-align: center;
+}
+
+/* قيمة جودة الهواء */
+.aq-value {
+  font-family: var(--font-numbers);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+/* تسمية جودة الهواء */
+.aq-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+/* حاوية شريط جودة الهواء */
+.aq-bar-container {
+  height: 8px;
+  background: rgba(102, 126, 234, 0.15);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+/* شريط جودة الهواء */
+.aq-bar {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  width: 0%;
+  transition: width var(--transition-slow);
+}
+
+/* ===================== الفلكيات ===================== */
+.astro-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* عنصر فلكي */
+.astro-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.astro-item i {
+  color: var(--primary);
+  width: 16px;
+  text-align: center;
+}
+.astro-item strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* أيقونة طور القمر */
+.moon-phase-icon {
+  font-size: 1.1rem;
+  width: 16px;
+  text-align: center;
+}
+
+/* ===================== تذييل الصفحة ===================== */
+.site-footer {
+  margin-top: 20px;
+  padding: clamp(24px, 4vw, 40px);
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(102, 126, 234, 0.15);
+  text-align: center;
+}
+
+/* محتوى التذييل */
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+/* شعار التذييل */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+.footer-logo i {
+  font-size: 1.3rem;
+}
+
+/* نص التذييل */
+.footer-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* رابط التذييل */
+.footer-link {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.footer-link:hover {
+  color: var(--accent);
+}
+
+/* شكر التذييل */
+.footer-credits {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* آخر تحديث */
+.footer-update {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.footer-update i {
+  color: var(--success);
+}
+
+/* ===================== هياكل التحميل (Loading Skeletons) ===================== */
+.loading-cards {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* هيكل التحميل الأساسي */
+.loading-skeleton {
+  min-width: 100px;
+  height: 120px;
+  flex: 1;
+  background: linear-gradient(90deg,
+    rgba(102, 126, 234, 0.1) 25%,
+    rgba(102, 126, 234, 0.2) 50%,
+    rgba(102, 126, 234, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  border-radius: var(--radius-md);
+  animation: shimmer 1.5s infinite;
+}
+
+/* هيكل التحميل الطويل */
+.loading-skeleton.tall {
+  height: 180px;
+}
+
+/* ===================== الأنيميشن ===================== */
+
+/* ظهور من الأسفل */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* نزول من الأعلى */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* تحريك عائم للطقس */
+@keyframes floatWeather {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(-2deg); }
+  75% { transform: translateY(4px) rotate(2deg); }
+}
+
+/* نبضة الموقع */
+@keyframes locationPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* تأثير التلألؤ للهياكل */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* اهتزاز رسالة الخطأ */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+
+/* دوران */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ظهور تدريجي */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,512 @@
+/*
+  ===================================================
+  ملف CSS للاستجابة - responsive.css
+  يحتوي على:
+  - تنسيق شاشات الجوال الصغيرة جدًا (280px+)
+  - تنسيق شاشات الجوال العادية (480px+)
+  - تنسيق شاشات التابلت (768px+)
+  - تنسيق شاشات اللابتوب (1024px+)
+  - تنسيق شاشات الكمبيوتر الكبيرة (1400px+)
+  - تعديلات خاصة للـ Landscape mode
+  - تعديلات طباعة للصفحة (Print)
+  ===================================================
+*/
+
+/* ===================== شاشات أصغر من 360px (280px → 359px) ===================== */
+/* أصغر الشاشات - جوالات قديمة أو صغيرة جدًا */
+@media (max-width: 359px) {
+
+  /* تصغير حجم الخط الأساسي قليلًا */
+  html { font-size: 14px; }
+
+  /* الهامش الجانبي الأصغر */
+  .hero-section {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  /* البطاقة الرئيسية بحشو أصغر */
+  .weather-main-card {
+    padding: 16px;
+    border-radius: var(--radius-lg);
+  }
+
+  /* عرض درجة الحرارة الكبيرة مناسب للشاشات الصغيرة */
+  .temp-value {
+    font-size: 3rem;
+  }
+
+  /* جسم البطاقة يصبح عمودًا واحدًا */
+  .weather-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  /* شبكة المؤشرات 2 عناصر في كل صف */
+  .weather-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* شبكة التوقعات 2 عناصر في كل صف */
+  .forecast-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* شبكة بطاقات المعلومات عمود واحد */
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* أزرار البحث أصغر */
+  .btn-search,
+  .btn-location {
+    height: 48px;
+    padding: 0 14px;
+    font-size: 0.8rem;
+  }
+
+  /* حقل البحث أصغر */
+  .search-input {
+    height: 48px;
+    font-size: 0.85rem;
+    padding: 0 44px 0 14px;
+  }
+
+  /* أيقونة البحث */
+  .search-icon { right: 14px; }
+
+  /* اسم المدينة أصغر */
+  .city-name { font-size: 1.2rem; }
+
+  /* العنوان والتاريخ */
+  .current-time { font-size: 1.4rem; }
+
+  /* شريط التنقل */
+  .nav-logo-text { font-size: 1.1rem; }
+  .nav-logo-icon { font-size: 1.3rem; }
+
+  /* أزرار التحكم أصغر */
+  .theme-toggle, .unit-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 0.95rem;
+  }
+
+  /* معلومات الشروق والغروب */
+  .sun-times {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* قوس الشمس مخفي في الشاشات الصغيرة جدًا */
+  .sun-progress-container {
+    display: none;
+  }
+
+  /* زر العودة لرأس الصفحة */
+  .scroll-top-btn {
+    bottom: 16px;
+    left: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 0.95rem;
+  }
+
+  /* الـ Preloader */
+  .preloader-title { font-size: 1.8rem; }
+  .preloader-bar { width: 220px; }
+  .preloader-icon { width: 90px; height: 90px; }
+  .cloud { font-size: 3.5rem; }
+  .sun-rays { font-size: 2rem; }
+
+  /* بطاقات الساعات أصغر */
+  .hourly-card {
+    min-width: 70px;
+    padding: 8px 6px;
+  }
+
+  /* أيقونة الطقس الكبيرة أصغر */
+  .weather-main-icon { font-size: 3rem; }
+
+  /* بطاقات معلومات عمود واحد */
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* إخفاء نص الأزرار في الشاشات الصغيرة جدًا */
+  .btn-search span,
+  .btn-location span {
+    display: none;
+  }
+
+  /* الأزرار تصبح مربعة */
+  .btn-search,
+  .btn-location {
+    width: 48px;
+    padding: 0;
+    justify-content: center;
+  }
+}
+
+/* ===================== شاشات الجوال (360px → 479px) ===================== */
+@media (min-width: 360px) and (max-width: 479px) {
+
+  /* جسم البطاقة عمود واحد */
+  .weather-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  /* قسم درجة الحرارة أفقي */
+  .temp-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  }
+
+  /* شبكة مؤشرات 2 عناصر في كل صف */
+  .weather-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* شبكة التوقعات 3 عناصر في كل صف */
+  .forecast-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* معلومات الشروق والغروب */
+  .sun-progress-container { display: none; }
+
+  /* زر العودة لأعلى */
+  .scroll-top-btn {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  /* بطاقات المعلومات 2 × 1 */
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* بطاقة الفلكيات تأخذ العرض الكامل */
+  .astro-card {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ===================== شاشات الجوال الكبير (480px → 767px) ===================== */
+@media (min-width: 480px) and (max-width: 767px) {
+
+  /* جسم البطاقة عمود واحد */
+  .weather-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  /* قسم درجة الحرارة أفقي */
+  .temp-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  }
+
+  /* شبكة مؤشرات 3 عناصر في كل صف */
+  .weather-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* شبكة التوقعات 4 عناصر في كل صف */
+  .forecast-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* بطاقات المعلومات 2 × 2 */
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* بطاقة الفلكيات تأخذ العرض الكامل */
+  .astro-card {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ===================== شاشات التابلت (768px → 1023px) ===================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* جسم البطاقة عمودان */
+  .weather-card-body {
+    grid-template-columns: 1fr 1.8fr;
+  }
+
+  /* شبكة مؤشرات 3 عناصر في كل صف */
+  .weather-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* شبكة التوقعات 4 عناصر في كل صف */
+  .forecast-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* بطاقات المعلومات 3 × 1 */
+  .info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* الـ Preloader أكبر */
+  .preloader-icon { width: 140px; height: 140px; }
+}
+
+/* ===================== شاشات اللابتوب (1024px → 1399px) ===================== */
+@media (min-width: 1024px) {
+
+  /* جسم البطاقة عمودان بنسبة ذهبية */
+  .weather-card-body {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  /* شبكة مؤشرات 3 عناصر في كل صف */
+  .weather-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* شبكة التوقعات 7 عناصر في صف واحد */
+  .forecast-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  /* بطاقات المعلومات 3 × 1 */
+  .info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* البحث والأزرار في صف واحد */
+  .search-wrapper {
+    flex-wrap: nowrap;
+  }
+
+  /* إظهار قوس الشمس */
+  .sun-progress-container {
+    display: block;
+  }
+}
+
+/* ===================== شاشات الكمبيوتر الكبيرة (1400px+) ===================== */
+@media (min-width: 1400px) {
+
+  /* زيادة أقصى عرض */
+  .hero-section {
+    max-width: 1400px;
+  }
+
+  /* شبكة مؤشرات 6 عناصر في صف واحد */
+  .weather-stats-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* درجة الحرارة أكبر */
+  .temp-value { font-size: 7rem; }
+}
+
+/* ===================== وضع الأفقي للجوال (Landscape) ===================== */
+@media (max-height: 500px) and (orientation: landscape) {
+
+  /* تقليل المسافات العمودية */
+  .hero-section {
+    padding-top: calc(var(--navbar-height) + 16px);
+  }
+
+  /* البطاقة الرئيسية بحشو أقل */
+  .weather-main-card {
+    padding: 16px;
+  }
+
+  /* جسم البطاقة أفقي */
+  .weather-card-body {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  /* تصغير درجة الحرارة */
+  .temp-value { font-size: 3.5rem; }
+  .weather-main-icon { font-size: 2.5rem; }
+
+  /* إخفاء عناصر غير ضرورية */
+  .sun-progress-container { display: none; }
+  .extra-info { display: none; }
+
+  /* Preloader مصغر */
+  .preloader-icon { width: 80px; height: 80px; }
+  .cloud { font-size: 3rem; }
+  .sun-rays { font-size: 1.8rem; }
+}
+
+/* ===================== تعديلات خاصة للمس (Touch) ===================== */
+@media (hover: none) and (pointer: coarse) {
+
+  /* إزالة تأثيرات التحويم على الأجهزة اللمسية لتحسين الأداء */
+  .stat-card:hover,
+  .hourly-card:hover,
+  .forecast-card:hover,
+  .info-card:hover {
+    transform: none;
+  }
+
+  /* زيادة حجم مناطق النقر */
+  .scroll-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .theme-toggle, .unit-toggle {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* زر العودة لأعلى أكبر */
+  .scroll-top-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  /* البطاقات لها تأثير نقر بدل التحويم */
+  .stat-card:active,
+  .hourly-card:active,
+  .forecast-card:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ===================== تحسينات الوصولية ===================== */
+
+/* تقليل الحركة للأشخاص الذين يفضلون ذلك */
+@media (prefers-reduced-motion: reduce) {
+  /* إلغاء جميع الأنيميشن */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* إبقاء التمرير السلس */
+  html { scroll-behavior: auto; }
+}
+
+/* وضع التباين العالي */
+@media (prefers-contrast: high) {
+  :root {
+    --bg-glass: rgba(255, 255, 255, 0.98);
+    --text-muted: #555;
+  }
+
+  .weather-main-card {
+    border: 2px solid var(--primary);
+  }
+
+  .stat-card {
+    border: 1px solid var(--primary);
+  }
+}
+
+/* ===================== تنسيق الطباعة ===================== */
+@media print {
+
+  /* إخفاء العناصر غير الضرورية للطباعة */
+  .preloader,
+  .navbar,
+  .search-container,
+  .scroll-top-btn,
+  .hourly-section,
+  .weather-bg,
+  .bg-overlay,
+  .bg-particles,
+  .scroll-controls,
+  .btn-search,
+  .btn-location {
+    display: none !important;
+  }
+
+  /* تبييض الخلفية للطباعة */
+  body {
+    background: white;
+    color: black;
+  }
+
+  /* البطاقة بدون زجاجية */
+  .weather-main-card {
+    background: white;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  /* شبكة التوقعات 4 عناصر */
+  .forecast-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* الصفحة تأخذ العرض الكامل */
+  .hero-section {
+    padding: 0;
+  }
+}
+
+/* ===================== تعديلات خاصة لعناصر محددة ===================== */
+
+/* إصلاح لشاشات 280px بالضبط */
+@media (max-width: 280px) {
+  .search-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .search-wrapper {
+    flex-direction: column;
+  }
+
+  .search-input-group {
+    width: 100%;
+  }
+
+  /* كل عناصر الشبكة في عمود واحد */
+  .weather-stats-grid,
+  .forecast-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* تصغير أكثر */
+  .temp-value { font-size: 2.5rem; }
+  .city-name { font-size: 1.1rem; }
+  .current-time { font-size: 1.3rem; }
+
+  /* إخفاء عناصر ثانوية */
+  .extra-info { display: none; }
+  .sun-times { flex-direction: column; gap: 8px; }
+  .sun-progress-container { display: none; }
+  .footer-update { display: none; }
+}
+
+/* ===================== تنسيق خاص لشاشات Super Wide (2560px+) ===================== */
+@media (min-width: 2560px) {
+  html { font-size: 18px; }
+
+  .hero-section {
+    max-width: 1600px;
+  }
+}
+
+/* ===================== دعم الـ Safe Area للأجهزة المشقوقة الشاشة ===================== */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .scroll-top-btn {
+    bottom: calc(30px + env(safe-area-inset-bottom));
+  }
+
+  .site-footer {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+}
