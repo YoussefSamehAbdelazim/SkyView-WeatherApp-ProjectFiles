@@ -1,18 +1,4 @@
-/**
- * Cloudflare Pages Function
- * Route: /api/weather
- *
- * Browser -> /api/weather -> WeatherAPI
- * The WeatherAPI key is read only from context.env.WEATHER_API_KEY.
- *
- * Security / reliability controls:
- * - Server-side secret only
- * - Input validation and normalization
- * - Best-effort per-IP rate limiting in each Cloudflare isolate
- * - Short in-memory cache
- * - Upstream timeout
- * - No secret details returned to the client
- */
+// Weather API server function
 
 const WEATHER_API_BASE = 'https://api.weatherapi.com/v1';
 const CACHE_TTL_MS = 5 * 60 * 1000;
@@ -182,7 +168,7 @@ export async function onRequestGet(context) {
     const payload = await readUpstreamJson(upstream);
 
     if (!upstream.ok) {
-      // Pass back the public API error code/message, but never echo the secret.
+
       return json(payload, upstream.status);
     }
 
