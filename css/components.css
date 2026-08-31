@@ -1,26 +1,8 @@
-/*
-  ===================================================
-  ملف CSS للمكونات - components.css
-  يحتوي على:
-  - الـ Preloader المتحرك
-  - البطاقات الساعية والأسبوعية
-  - بطاقات المؤشرات (رطوبة، رياح، ضغط)
-  - أزرار البحث والتبديل
-  - زر العودة لأعلى الصفحة
-  - مؤشرات التحميل
-  - الأنيميشن المتخصصة
-  ===================================================
-*/
-
-/* ===================== Preloader - شاشة التحميل ===================== */
-
-/* محتوى الـ Preloader */
 .preloader-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  /* حركة ظهور */
   animation: preloaderAppear 0.5s ease;
 }
 
@@ -29,7 +11,6 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-/* حاوية أيقونة الـ Preloader */
 .preloader-icon {
   position: relative;
   width: 120px;
@@ -37,50 +18,40 @@
   margin-bottom: 8px;
 }
 
-/* حاوية أنيميشن الغيمة */
 .cloud-animation {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-/* الغيمة الرئيسية */
 .cloud {
   position: absolute;
   font-size: 5rem;
   color: rgba(255, 255, 255, 0.95);
-  /* ظل الغيمة */
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
-  /* تحريك عائم */
   animation: cloudFloat 3s ease-in-out infinite;
 }
 
-/* تحريك الغيمة */
 @keyframes cloudFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
 
-/* حاوية أشعة الشمس */
 .sun-rays {
   position: absolute;
   top: -15px;
   right: -10px;
   font-size: 2.5rem;
   color: #ffd700;
-  /* ظل الشمس */
   filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
-  /* تحريك دوران */
   animation: sunSpin 8s linear infinite;
 }
 
-/* تحريك دوران الشمس */
 @keyframes sunSpin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* قطرات المطر */
 .rain-drops {
   position: absolute;
   bottom: -10px;
@@ -89,57 +60,47 @@
   gap: 6px;
 }
 
-/* قطرة مطر واحدة */
 .rain-drops span {
   display: block;
   width: 3px;
   background: rgba(147, 210, 255, 0.9);
   border-radius: var(--radius-full);
-  /* تحريك السقوط بتأخيرات مختلفة */
   animation: dropFall 1.5s ease-in-out infinite;
 }
 
-/* قطرة الأولى */
 .rain-drops span:nth-child(1) {
   height: 20px;
   animation-delay: 0s;
 }
-/* قطرة الثانية */
 .rain-drops span:nth-child(2) {
   height: 15px;
   animation-delay: 0.3s;
 }
-/* قطرة الثالثة */
 .rain-drops span:nth-child(3) {
   height: 18px;
   animation-delay: 0.6s;
 }
 
-/* تحريك سقوط القطرة */
 @keyframes dropFall {
   0% { transform: translateY(-10px); opacity: 0; }
   30% { opacity: 1; }
   100% { transform: translateY(20px); opacity: 0; }
 }
 
-/* عنوان الـ Preloader */
 .preloader-title {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 900;
   color: white;
   letter-spacing: 3px;
-  /* تأثير ظل النص */
   text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* وصف الـ Preloader */
 .preloader-subtitle {
   color: rgba(255, 255, 255, 0.85);
   font-size: clamp(0.8rem, 2vw, 0.95rem);
   font-weight: 400;
   text-align: center;
-  /* تحريك النبض */
   animation: subtitlePulse 2s ease-in-out infinite;
 }
 
@@ -148,7 +109,6 @@
   50% { opacity: 1; }
 }
 
-/* شريط تقدم التحميل */
 .preloader-bar {
   width: clamp(200px, 60vw, 300px);
   height: 6px;
@@ -158,18 +118,15 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* التقدم داخل الشريط */
 .preloader-progress {
   height: 100%;
   background: white;
   border-radius: var(--radius-full);
-  /* تأثير توهج */
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   width: 0%;
   transition: width 0.3s ease;
 }
 
-/* نسبة التحميل */
 .preloader-percent {
   color: rgba(255, 255, 255, 0.9);
   font-family: var(--font-numbers);
@@ -178,9 +135,6 @@
   letter-spacing: 1px;
 }
 
-/* ===================== بطاقات المؤشرات (Stat Cards) ===================== */
-
-/* بطاقة مؤشر واحدة */
 .stat-card {
   background: rgba(102, 126, 234, 0.06);
   border-radius: var(--radius-md);
@@ -193,7 +147,6 @@
   cursor: default;
 }
 
-/* تأثير التحويم على بطاقة المؤشر */
 .stat-card:hover {
   background: rgba(102, 126, 234, 0.12);
   border-color: rgba(102, 126, 234, 0.25);
@@ -201,14 +154,12 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* رأس بطاقة المؤشر */
 .stat-header {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* حاوية أيقونة المؤشر */
 .stat-icon {
   width: 36px;
   height: 36px;
@@ -220,50 +171,42 @@
   flex-shrink: 0;
 }
 
-/* أيقونة الرطوبة */
 .humidity-icon {
   background: linear-gradient(135deg, #4facfe, #00f2fe);
   color: white;
 }
 
-/* أيقونة الرياح */
 .wind-icon {
   background: linear-gradient(135deg, #84fab0, #8fd3f4);
   color: white;
 }
 
-/* أيقونة الضغط */
 .pressure-icon {
   background: linear-gradient(135deg, #a18cd1, #fbc2eb);
   color: white;
 }
 
-/* أيقونة الرؤية */
 .visibility-icon {
   background: linear-gradient(135deg, #ffecd2, #fcb69f);
   color: #e67e22;
 }
 
-/* أيقونة UV */
 .uv-icon {
   background: linear-gradient(135deg, #f6d365, #fda085);
   color: white;
 }
 
-/* أيقونة الغيوم */
 .cloud-icon {
   background: linear-gradient(135deg, #d3d3d3, #f5f5f5);
   color: #666;
 }
 
-/* معلومات المؤشر */
 .stat-info {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-/* تسمية المؤشر */
 .stat-label {
   font-size: 0.72rem;
   color: var(--text-muted);
@@ -272,7 +215,6 @@
   letter-spacing: 0.5px;
 }
 
-/* قيمة المؤشر */
 .stat-value {
   font-family: var(--font-numbers);
   font-size: clamp(0.85rem, 2vw, 1rem);
@@ -280,7 +222,6 @@
   color: var(--text-primary);
 }
 
-/* شريط مؤشر الرطوبة */
 .stat-bar {
   height: 4px;
   background: rgba(102, 126, 234, 0.15);
@@ -288,7 +229,6 @@
   overflow: hidden;
 }
 
-/* ملء شريط الرطوبة */
 .humidity-fill {
   height: 100%;
   background: linear-gradient(90deg, #4facfe, #00f2fe);
@@ -296,7 +236,6 @@
   transition: width 1s ease;
 }
 
-/* اتجاه الرياح */
 .wind-direction {
   display: flex;
   align-items: center;
@@ -305,18 +244,15 @@
   color: var(--text-muted);
 }
 
-/* سهم اتجاه الرياح */
 .wind-arrow {
   color: #84fab0;
   transition: transform var(--transition-normal);
 }
 
-/* حالة الضغط الجوي */
 .pressure-indicator {
   margin-top: 2px;
 }
 
-/* نص حالة الضغط */
 .pressure-status {
   font-size: 0.72rem;
   padding: 2px 8px;
@@ -324,25 +260,21 @@
   font-weight: 600;
 }
 
-/* حالة الضغط العادية */
 .pressure-status.normal {
   background: rgba(16, 185, 129, 0.15);
   color: var(--success);
 }
 
-/* حالة الضغط المرتفع */
 .pressure-status.high {
   background: rgba(245, 158, 11, 0.15);
   color: var(--warning);
 }
 
-/* حالة الضغط المنخفض */
 .pressure-status.low {
   background: rgba(59, 130, 246, 0.15);
   color: var(--info);
 }
 
-/* مستوى UV */
 .uv-level {
   font-size: 0.72rem;
   padding: 2px 8px;
@@ -351,18 +283,11 @@
   display: inline-block;
 }
 
-/* مستوى UV منخفض */
 .uv-level.low { background: rgba(16, 185, 129, 0.15); color: var(--success); }
-/* مستوى UV متوسط */
 .uv-level.moderate { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
-/* مستوى UV مرتفع */
 .uv-level.high { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
-/* مستوى UV خطير */
 .uv-level.extreme { background: rgba(139, 0, 0, 0.15); color: #8b0000; }
 
-/* ===================== بطاقات التوقعات الساعية ===================== */
-
-/* بطاقة ساعة واحدة */
 .hourly-card {
   min-width: clamp(80px, 15vw, 100px);
   background: var(--bg-glass);
@@ -381,21 +306,18 @@
   flex-shrink: 0;
 }
 
-/* تأثير التحويم على بطاقة الساعة */
 .hourly-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
   border-color: rgba(102, 126, 234, 0.4);
 }
 
-/* تمييز الساعة الحالية */
 .hourly-card.current-hour {
   background: var(--gradient-primary);
   border-color: transparent;
   box-shadow: var(--shadow-glow);
 }
 
-/* نص الساعة */
 .hourly-time {
   font-family: var(--font-numbers);
   font-size: clamp(0.75rem, 1.8vw, 0.85rem);
@@ -403,17 +325,14 @@
   color: var(--text-muted);
 }
 
-/* نص الساعة الحالية */
 .hourly-card.current-hour .hourly-time {
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* أيقونة الطقس في بطاقة الساعة */
 .hourly-icon {
   font-size: clamp(1.3rem, 3vw, 1.8rem);
 }
 
-/* درجة الحرارة في بطاقة الساعة */
 .hourly-temp {
   font-family: var(--font-numbers);
   font-size: clamp(0.9rem, 2vw, 1.1rem);
@@ -421,12 +340,10 @@
   color: var(--text-primary);
 }
 
-/* درجة الحرارة في الساعة الحالية */
 .hourly-card.current-hour .hourly-temp {
   color: white;
 }
 
-/* احتمالية التساقط في بطاقة الساعة */
 .hourly-precip {
   font-size: clamp(0.65rem, 1.5vw, 0.75rem);
   color: var(--info);
@@ -440,9 +357,6 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* ===================== بطاقات التوقعات اليومية ===================== */
-
-/* بطاقة يوم واحد */
 .forecast-card {
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
@@ -461,21 +375,18 @@
   overflow: hidden;
 }
 
-/* تأثير التحويم على بطاقة اليوم */
 .forecast-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
   border-color: rgba(102, 126, 234, 0.4);
 }
 
-/* تمييز اليوم الحالي */
 .forecast-card.today {
   background: var(--gradient-primary);
   border-color: transparent;
   box-shadow: var(--shadow-glow);
 }
 
-/* شارة "اليوم" */
 .forecast-card.today::before {
   content: 'اليوم';
   position: absolute;
@@ -489,7 +400,6 @@
   border-radius: var(--radius-full);
 }
 
-/* اسم اليوم */
 .forecast-day {
   font-family: var(--font-heading);
   font-size: clamp(0.8rem, 2vw, 0.9rem);
@@ -498,27 +408,21 @@
   text-align: center;
 }
 
-/* اسم اليوم الحالي */
 .forecast-card.today .forecast-day {
   color: white;
-  margin-top: 16px; /* مسافة للشارة */
-}
+  margin-top: 16px; }
 
-/* التاريخ */
 .forecast-date {
   font-size: clamp(0.65rem, 1.5vw, 0.75rem);
   color: var(--text-muted);
 }
 .forecast-card.today .forecast-date { color: rgba(255,255,255,0.7); }
 
-/* أيقونة الطقس في بطاقة اليوم */
 .forecast-icon {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  /* تحريك عائم */
   animation: floatWeather 4s ease-in-out infinite;
 }
 
-/* وصف الطقس في بطاقة اليوم */
 .forecast-desc {
   font-size: clamp(0.65rem, 1.5vw, 0.75rem);
   color: var(--text-secondary);
@@ -527,7 +431,6 @@
 }
 .forecast-card.today .forecast-desc { color: rgba(255,255,255,0.85); }
 
-/* نطاق درجات الحرارة في بطاقة اليوم */
 .forecast-temps {
   display: flex;
   flex-direction: column;
@@ -536,7 +439,6 @@
   width: 100%;
 }
 
-/* درجة الحرارة العليا */
 .forecast-high {
   font-family: var(--font-numbers);
   font-size: clamp(1rem, 2.5vw, 1.3rem);
@@ -545,7 +447,6 @@
 }
 .forecast-card.today .forecast-high { color: white; }
 
-/* درجة الحرارة الدنيا */
 .forecast-low {
   font-family: var(--font-numbers);
   font-size: clamp(0.8rem, 2vw, 0.95rem);
@@ -554,7 +455,6 @@
 }
 .forecast-card.today .forecast-low { color: rgba(255,255,255,0.7); }
 
-/* شريط نطاق درجات الحرارة */
 .forecast-temp-bar {
   width: 100%;
   height: 4px;
@@ -572,7 +472,6 @@
 .forecast-card.today .forecast-temp-bar { background: rgba(255,255,255,0.2); }
 .forecast-card.today .forecast-temp-bar-fill { background: rgba(255,255,255,0.7); }
 
-/* احتمالية التساقط */
 .forecast-rain-chance {
   font-size: clamp(0.65rem, 1.5vw, 0.75rem);
   color: var(--info);
@@ -583,9 +482,6 @@
 }
 .forecast-card.today .forecast-rain-chance { color: rgba(255,255,255,0.85); }
 
-/* ===================== أزرار التحكم ===================== */
-
-/* زر البحث الرئيسي */
 .btn-search {
   height: 56px;
   padding: 0 clamp(16px, 3vw, 28px);
@@ -602,18 +498,15 @@
   white-space: nowrap;
 }
 
-/* تأثير التحويم على زر البحث */
 .btn-search:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-lg), 0 0 20px rgba(102, 126, 234, 0.4);
 }
 
-/* تأثير الضغط على زر البحث */
 .btn-search:active {
   transform: translateY(0);
 }
 
-/* زر تحديد الموقع */
 .btn-location {
   height: 56px;
   padding: 0 clamp(14px, 2.5vw, 24px);
@@ -632,7 +525,6 @@
   white-space: nowrap;
 }
 
-/* تأثير التحويم على زر الموقع */
 .btn-location:hover {
   background: var(--primary);
   color: white;
@@ -641,14 +533,10 @@
   box-shadow: var(--shadow-md);
 }
 
-/* زر عند التحميل */
 .btn-location.loading i {
   animation: spin 1s linear infinite;
 }
 
-/* ===================== زر تبديل الثيم ===================== */
-
-/* الزر الرئيسي */
 .theme-toggle {
   width: 44px;
   height: 44px;
@@ -670,8 +558,6 @@
   color: white;
   transform: rotate(20deg) scale(1.1);
 }
-
-/* ===================== زر تبديل الوحدة ===================== */
 
 .unit-toggle {
   height: 44px;
@@ -698,22 +584,16 @@
   transform: scale(1.05);
 }
 
-/* ===================== زر العودة لرأس الصفحة ===================== */
-
-/* الزر الرئيسي */
 .scroll-top-btn {
   position: fixed;
   bottom: clamp(20px, 4vw, 40px);
   left: clamp(20px, 4vw, 40px);
-  /* حجم الزر */
   width: 52px;
   height: 52px;
-  /* نسبي لتحديد الـ SVG */
   position: fixed;
   bottom: 30px;
   left: 30px;
   z-index: 999;
-  /* تأثير الزجاج */
   background: var(--gradient-primary);
   color: white;
   border-radius: var(--radius-full);
@@ -723,69 +603,55 @@
   justify-content: center;
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
   transition: all var(--transition-spring);
-  /* يبدأ مخفيًا */
   opacity: 0;
   transform: translateY(20px);
   pointer-events: none;
 }
 
-/* حالة الظهور */
 .scroll-top-btn.visible {
   opacity: 1;
   transform: translateY(0);
   pointer-events: all;
 }
 
-/* تأثير التحويم */
 .scroll-top-btn:hover {
   transform: translateY(-5px) scale(1.1);
   box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
 }
 
-/* تأثير الضغط */
 .scroll-top-btn:active {
   transform: translateY(-2px) scale(0.95);
 }
 
-/* الـ SVG لدائرة التقدم */
 .scroll-progress {
   position: absolute;
   top: -4px;
   left: -4px;
   width: 60px;
   height: 60px;
-  transform: rotate(-90deg); /* تبدأ من الأعلى */
-  pointer-events: none;
+  transform: rotate(-90deg); pointer-events: none;
 }
 
-/* خلفية دائرة التقدم */
 .scroll-progress-bg {
   fill: none;
   stroke: rgba(255, 255, 255, 0.2);
   stroke-width: 2;
 }
 
-/* ملء دائرة التقدم */
 .scroll-progress-fill {
   fill: none;
   stroke: white;
   stroke-width: 2;
-  /* محيط الدائرة = 2 * π * r = 2 * π * 16 ≈ 100.53 */
   stroke-dasharray: 100.53;
-  stroke-dashoffset: 100.53; /* يبدأ فارغًا */
-  stroke-linecap: round;
+  stroke-dashoffset: 100.53; stroke-linecap: round;
   transition: stroke-dashoffset var(--transition-fast);
 }
 
-/* ===================== حالة التحميل للمكونات ===================== */
-
-/* تأثير اللمعان للتحميل */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
 
-/* هيكل تحميل */
 .loading-skeleton {
   background: linear-gradient(
     90deg,
@@ -798,9 +664,6 @@
   border-radius: var(--radius-md);
 }
 
-/* ===================== تأثيرات إضافية ===================== */
-
-/* تأثير النبض للعناصر المهمة */
 .pulse-effect {
   animation: pulseEffect 2s ease-in-out infinite;
 }
@@ -810,7 +673,6 @@
   50% { box-shadow: 0 0 0 12px rgba(102, 126, 234, 0); }
 }
 
-/* تأثير البريق للبطاقة الرئيسية */
 .shimmer-effect {
   position: relative;
   overflow: hidden;
@@ -838,8 +700,6 @@
   0% { transform: rotate(30deg) translateX(-200%); }
   100% { transform: rotate(30deg) translateX(200%); }
 }
-
-/* ===================== تحسين الـ Dark Mode للمكونات ===================== */
 
 .theme-dark .stat-card {
   background: rgba(139, 157, 255, 0.06);
@@ -879,9 +739,6 @@
   border-color: rgba(139, 157, 255, 0.25);
 }
 
-/* ===================== شريط التقدم الدائري للشمس ===================== */
-
-/* نبضة الموقع المحدد */
 @keyframes locationPing {
   0% { transform: scale(1); opacity: 1; }
   100% { transform: scale(2.5); opacity: 0; }
@@ -898,4 +755,160 @@
   border-radius: 50%;
   background: rgba(239, 68, 68, 0.4);
   animation: locationPing 1.5s ease-out infinite;
+}
+
+.about-toggle {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+}
+.about-toggle:hover { transform: translateY(-2px); background: var(--bg-glass-hover); box-shadow: var(--shadow-sm); }
+.about-toggle i { font-size: 1rem; }
+
+.about-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.about-modal.hidden { display: none; }
+
+.about-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 35, 0.58);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  animation: aboutFadeIn 0.2s ease;
+}
+.about-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(680px, 100%);
+  max-height: min(86vh, 760px);
+  overflow-y: auto;
+  padding: 34px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: var(--radius-xl);
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  animation: aboutSlideUp 0.3s ease;
+}
+.about-close {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+.about-close:hover { transform: rotate(90deg); background: var(--danger); color: var(--text-white); }
+
+.about-icon {
+  width: 68px;
+  height: 68px;
+  margin-bottom: 18px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  background: var(--gradient-primary);
+  color: var(--text-white);
+  font-size: 1.9rem;
+  box-shadow: var(--shadow-glow);
+}
+.about-content { text-align: right; }
+.about-eyebrow {
+  display: inline-block;
+  margin-bottom: 4px;
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.about-content h2 {
+  margin-bottom: 10px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+}
+.about-description, .about-section p { color: var(--text-secondary); line-height: 1.9; }
+.about-section {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(102,126,234,0.14);
+}
+.about-section h3 {
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+}
+.about-section h3 i { color: var(--primary); }
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.about-tags span {
+  padding: 7px 11px;
+  border-radius: var(--radius-full);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.about-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 14px;
+  border: 1px solid rgba(16,185,129,0.18);
+  border-radius: var(--radius-md);
+  background: rgba(16,185,129,0.08);
+}
+.about-highlight > i { margin-top: 5px; color: var(--success); }
+.about-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(102,126,234,0.14);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+.about-footer span { display: inline-flex; align-items: center; gap: 6px; }
+body.about-open { overflow: hidden; }
+@keyframes aboutFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes aboutSlideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 600px) {
+  .about-toggle span { display: none; }
+  .about-toggle { width: 40px; min-width: 40px; height: 40px; padding: 0; }
+  .about-dialog { padding: 28px 20px 22px; border-radius: var(--radius-lg); }
+  .about-icon { width: 58px; height: 58px; font-size: 1.6rem; }
+  .about-footer { flex-direction: column; }
 }
