@@ -1,17 +1,3 @@
-/*
-  ===================================================
-  ملف CSS للسمات - themes.css
-  يحتوي على:
-  - سمة الوضع الفاتح (Light Mode)
-  - سمة الوضع الداكن (Dark Mode)
-  - الخلفيات الديناميكية حسب حالة الطقس
-  - الألوان والتدرجات المرتبطة بكل طقس
-  - الجزيئات المتحركة (مطر، ثلج، غيوم)
-  ===================================================
-*/
-
-/* ===================== الوضع الفاتح (Light Mode) ===================== */
-/* يُطبَّق تلقائيًا أو عند class="theme-light" */
 .theme-light {
   --bg-primary: #f0f4ff;
   --bg-secondary: #ffffff;
@@ -26,49 +12,37 @@
   --shadow-lg: 0 20px 60px rgba(102, 126, 234, 0.2);
 }
 
-/* ===================== الوضع الداكن (Dark Mode) ===================== */
-/* يُطبَّق عند class="theme-dark" أو تلقائيًا في الليل */
 .theme-dark {
-  /* ألوان الخلفية الداكنة */
   --bg-primary: #0d0d1a;
   --bg-secondary: #1a1a2e;
   --bg-tertiary: #252540;
-  /* الخلفية الزجاجية في الوضع الداكن */
   --bg-glass: rgba(26, 26, 46, 0.85);
   --bg-glass-hover: rgba(26, 26, 46, 0.98);
 
-  /* النصوص في الوضع الداكن */
   --text-primary: #e8e8ff;
   --text-secondary: #a0a0c0;
   --text-muted: #5a5a7a;
 
-  /* الألوان الرئيسية تبقى بشكل واضح */
   --primary: #8b9dff;
   --primary-dark: #7a8ef0;
   --accent: #f0a8ff;
   --accent-2: #6bd5ff;
 
-  /* الظلال في الوضع الداكن */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 30px rgba(139, 157, 255, 0.2);
 }
 
-/* ===================== إعادة تحديد عناصر الوضع الداكن ===================== */
-
-/* شريط التنقل في الوضع الداكن */
 .theme-dark .navbar {
   background: rgba(13, 13, 26, 0.9);
   border-bottom-color: rgba(139, 157, 255, 0.15);
 }
 
-/* البطاقة الرئيسية في الوضع الداكن */
 .theme-dark .weather-main-card {
   border-color: rgba(139, 157, 255, 0.15);
 }
 
-/* قائمة الاقتراحات في الوضع الداكن */
 .theme-dark .search-suggestions {
   background: var(--bg-secondary);
   border-color: rgba(139, 157, 255, 0.2);
@@ -78,121 +52,72 @@
   background: var(--bg-tertiary);
 }
 
-/* ===================== خلفيات الطقس الديناميكية ===================== */
-
-/* --- الطقس المشمس (صافي) --- */
 .weather-bg.sunny {
   background: linear-gradient(
     135deg,
-    #f6d365 0%,    /* أصفر ذهبي */
-    #fda085 40%,   /* برتقالي دافئ */
-    #ff9a9e 100%   /* وردي فاتح */
-  );
+    #f6d365 0%,    #fda085 40%,   #ff9a9e 100%   );
 }
 
-/* --- الطقس المشمس جزئيًا (غيوم متفرقة) --- */
 .weather-bg.partly-cloudy {
   background: linear-gradient(
     135deg,
-    #4facfe 0%,    /* أزرق سماوي */
-    #00f2fe 40%,   /* سماوي فاتح */
-    #a8edea 100%   /* أخضر مائل للأزرق */
-  );
+    #4facfe 0%,    #00f2fe 40%,   #a8edea 100%   );
 }
 
-/* --- الطقس الغائم --- */
 .weather-bg.cloudy {
   background: linear-gradient(
     135deg,
-    #8e9eab 0%,    /* رمادي مزرق */
-    #eef2f3 50%,   /* رمادي فاتح */
-    #b8c6db 100%   /* رمادي مزرق فاتح */
-  );
+    #8e9eab 0%,    #eef2f3 50%,   #b8c6db 100%   );
 }
 
-/* --- الطقس الممطر --- */
 .weather-bg.rainy {
   background: linear-gradient(
     135deg,
-    #1a1a2e 0%,    /* أزرق داكن جدًا */
-    #16213e 40%,   /* أزرق داكن */
-    #0f3460 100%   /* أزرق كحلي */
-  );
+    #1a1a2e 0%,    #16213e 40%,   #0f3460 100%   );
 }
 
-/* --- العاصفة الرعدية --- */
 .weather-bg.stormy {
   background: linear-gradient(
     135deg,
-    #0d0d0d 0%,    /* أسود */
-    #1a1a2e 40%,   /* داكن جدًا */
-    #2d2d44 100%   /* داكن */
-  );
+    #0d0d0d 0%,    #1a1a2e 40%,   #2d2d44 100%   );
 }
 
-/* --- الثلج --- */
 .weather-bg.snowy {
   background: linear-gradient(
     135deg,
-    #e8f4f8 0%,    /* أبيض مزرق */
-    #dfe9f3 40%,   /* رمادي فاتح */
-    #c9d6df 100%   /* رمادي مائل للأزرق */
-  );
+    #e8f4f8 0%,    #dfe9f3 40%,   #c9d6df 100%   );
 }
 
-/* --- الضباب --- */
 .weather-bg.foggy {
   background: linear-gradient(
     135deg,
-    #c9d6df 0%,    /* رمادي */
-    #e2e2e2 50%,   /* رمادي فاتح */
-    #d4d4d4 100%   /* رمادي أبيض */
-  );
+    #c9d6df 0%,    #e2e2e2 50%,   #d4d4d4 100%   );
 }
 
-/* --- الوضع الليلي (الليل العام) --- */
 .weather-bg.night {
   background: linear-gradient(
     135deg,
-    #0f0c29 0%,    /* بنفسجي داكن جدًا */
-    #302b63 50%,   /* بنفسجي */
-    #24243e 100%   /* كحلي */
-  );
+    #0f0c29 0%,    #302b63 50%,   #24243e 100%   );
 }
 
-/* --- ليلة مقمرة --- */
 .weather-bg.night-clear {
   background: linear-gradient(
     135deg,
-    #0a0a1a 0%,    /* أسود مزرق */
-    #1a1040 40%,   /* بنفسجي داكن */
-    #0d0d30 100%   /* كحلي داكن */
-  );
+    #0a0a1a 0%,    #1a1040 40%,   #0d0d30 100%   );
 }
 
-/* --- غروب الشمس --- */
 .weather-bg.sunset {
   background: linear-gradient(
     135deg,
-    #fc4a1a 0%,    /* برتقالي محترق */
-    #f7b733 40%,   /* ذهبي */
-    #c02425 100%   /* أحمر داكن */
-  );
+    #fc4a1a 0%,    #f7b733 40%,   #c02425 100%   );
 }
 
-/* --- شروق الشمس --- */
 .weather-bg.sunrise {
   background: linear-gradient(
     135deg,
-    #f6d365 0%,    /* ذهبي */
-    #fda085 30%,   /* برتقالي */
-    #a18cd1 100%   /* بنفسجي فاتح */
-  );
+    #f6d365 0%,    #fda085 30%,   #a18cd1 100%   );
 }
 
-/* ===================== الوضع الداكن + خلفيات الطقس ===================== */
-
-/* تكييف الخلفيات مع الوضع الداكن */
 .theme-dark .weather-bg.sunny {
   background: linear-gradient(135deg, #7b4f1a, #a0522d, #6b3a2a);
 }
@@ -205,21 +130,15 @@
   background: linear-gradient(135deg, #2d3748, #1a202c, #252d3d);
 }
 
-/* ===================== الجزيئات المتحركة ===================== */
-
-/* --- جزيئات المطر --- */
 .rain-particle {
   position: absolute;
-  /* قطرة مطر طولية */
   width: 2px;
   background: linear-gradient(180deg, transparent, rgba(147, 210, 255, 0.8));
   border-radius: var(--radius-full);
-  /* تحريك السقوط */
   animation: rainFall linear infinite;
   pointer-events: none;
 }
 
-/* تحريك قطرة المطر */
 @keyframes rainFall {
   from {
     transform: translateY(-100px) translateX(0);
@@ -233,18 +152,15 @@
   }
 }
 
-/* --- جزيئات الثلج --- */
 .snow-particle {
   position: absolute;
   background: white;
   border-radius: 50%;
   opacity: 0.8;
-  /* تحريك السقوط المتمايل */
   animation: snowFall linear infinite;
   pointer-events: none;
 }
 
-/* تحريك قطعة الثلج */
 @keyframes snowFall {
   from {
     transform: translateY(-20px) translateX(0) rotate(0deg);
@@ -258,33 +174,27 @@
   }
 }
 
-/* --- جزيئات النجوم (للوضع الليلي) --- */
 .star-particle {
   position: absolute;
   background: white;
   border-radius: 50%;
-  /* وميض النجوم */
   animation: starTwinkle ease-in-out infinite;
   pointer-events: none;
 }
 
-/* تحريك وميض النجوم */
 @keyframes starTwinkle {
   0%, 100% { opacity: 0.2; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.5); }
 }
 
-/* --- جزيئات الغيوم --- */
 .cloud-particle {
   position: absolute;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 50px;
-  /* تحريك الغيوم */
   animation: cloudDrift linear infinite;
   pointer-events: none;
 }
 
-/* تحريك الغيوم */
 @keyframes cloudDrift {
   from { transform: translateX(-200px); opacity: 0; }
   10% { opacity: 1; }
@@ -292,7 +202,6 @@
   to { transform: translateX(110vw); opacity: 0; }
 }
 
-/* --- جزيئات البرق (للعواصف) --- */
 .lightning-flash {
   position: fixed;
   inset: 0;
@@ -302,7 +211,6 @@
   animation: lightningFlash 8s ease-in-out infinite;
 }
 
-/* تحريك البرق */
 @keyframes lightningFlash {
   0%, 90%, 100% { opacity: 0; }
   92% { opacity: 0.6; }
@@ -311,29 +219,18 @@
   98% { opacity: 0; }
 }
 
-/* ===================== الوضع التلقائي (Auto) ===================== */
-/* يكتشف وقت النهار/الليل تلقائيًا بـ JavaScript */
 .theme-auto {
-  /* يرث من الـ Root الافتراضي */
-}
+  }
 
-/* ===================== الكواكب والتفاصيل الفلكية ===================== */
-
-/* أيقونة القمر في الوضع الداكن */
 .theme-dark .moon-icon {
-  color: #ffd700; /* ذهبي */
-  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+  color: #ffd700; filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
 }
 
-/* أيقونة الشمس في الوضع الفاتح */
 .theme-light .sun-icon {
   color: #fda085;
   filter: drop-shadow(0 0 8px rgba(253, 160, 133, 0.5));
 }
 
-/* ===================== تأثيرات خاصة بالخلفيات ===================== */
-
-/* تأثير التوهج للطقس المشمس */
 .weather-bg.sunny::after {
   content: '';
   position: absolute;
@@ -352,7 +249,6 @@
   50% { transform: scale(1.2); opacity: 1; }
 }
 
-/* تأثير التوهج للطقس الليلي */
 .weather-bg.night::after,
 .weather-bg.night-clear::after {
   content: '';
@@ -372,67 +268,46 @@
   50% { transform: scale(1.3); opacity: 0.8; }
 }
 
-/* ===================== تأثيرات الخلفية الزجاجية ===================== */
-
-/* الكارد الزجاجي عند الطقس المشمس */
 .weather-bg.sunny ~ .hero-section .weather-main-card {
   background: rgba(255, 255, 255, 0.7);
   border-color: rgba(253, 160, 133, 0.3);
 }
 
-/* الكارد الزجاجي عند الطقس الممطر */
 .weather-bg.rainy ~ .hero-section .weather-main-card {
   background: rgba(26, 26, 46, 0.7);
   border-color: rgba(79, 172, 254, 0.3);
 }
 
-/* ===================== ألوان أيقونات الطقس ===================== */
-
-/* أيقونة المطر */
 .weather-main-icon.rain-icon { color: #4facfe; }
-/* أيقونة الشمس */
 .weather-main-icon.sun-icon { color: #fda085; }
-/* أيقونة الغيوم */
 .weather-main-icon.cloud-icon { color: #8e9eab; }
-/* أيقونة الثلج */
 .weather-main-icon.snow-icon { color: #dfe9f3; }
-/* أيقونة العاصفة */
 .weather-main-icon.storm-icon { color: #a0a0c0; }
-/* أيقونة الضباب */
 .weather-main-icon.fog-icon { color: #c9d6df; }
 
-/* ===================== Preloader Themes ===================== */
-
-/* Preloader في الوضع الداكن */
 .theme-dark .preloader {
   background: var(--gradient-night);
 }
 
-/* ===================== أنيميشن Preloader ===================== */
 .preloader {
-  /* تغطي كامل الشاشة */
   position: fixed;
   inset: 0;
   z-index: 9999;
-  /* تدرج جميل */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   background-size: 400% 400%;
   animation: preloaderGradient 3s ease infinite;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* انتقال الاختفاء */
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-/* تحريك تدرج الـ Preloader */
 @keyframes preloaderGradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Preloader في حالة الاختفاء */
 .preloader.hide {
   opacity: 0;
   visibility: hidden;
