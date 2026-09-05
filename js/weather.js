@@ -294,16 +294,48 @@ const WeatherHelpers = {
   },
 
   formatTime(timeStr) {
-    if (!timeStr) return '--:--';
+  if (!timeStr || typeof timeStr !== 'string') {
+    return '--:--';
+  }
 
-    const [time, period] = timeStr.split(' ');
-    let [hours, minutes] = time.split(':').map(Number);
+  const value = timeStr.trim();
+ 
+  if (
+    value.toLowerCase().includes('does not rise') ||
+    value.toLowerCase().includes('does not set') ||
+    value.toLowerCase().includes('no moonrise') ||
+    value.toLowerCase().includes('no moonset')
+  ) {
+    return value;
+  }
 
-    if (period === 'PM' && hours !== 12) hours += 12;
-    if (period === 'AM' && hours === 12) hours = 0;
+  const parts = value.split(/\s+/);
+  const time = parts[0];
+  const period = parts[1]?.toUpperCase();
 
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-  },
+  if (!time || !time.includes(':')) {
+    return '--:--';
+  }
+
+  const [hoursText, minutesText] = time.split(':');
+
+  let hours = Number(hoursText);
+  const minutes = Number(minutesText);
+
+  if (!Number.isFinite(hours) || !Number.isFinite(minutes)) {
+    return '--:--';
+  }
+
+  if (period === 'PM' && hours !== 12) {
+    hours += 12;
+  }
+
+  if (period === 'AM' && hours === 12) {
+    hours = 0;
+  }
+
+  return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+},
 
   getMoonPhase(phase) {
     const phases = {
